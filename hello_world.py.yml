@@ -1,0 +1,20 @@
+# This is a YAML file that defines a pipeline for running a Python "Hello World" program on Azure Pipelines.
+
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.8'
+    addToPath: true
+- script: |
+    python -m pip install --upgrade pip
+
+  displayName: 'Install dependencies'
+- script: |
+    python hello_world.py
+  displayName: 'Run Hello World'
